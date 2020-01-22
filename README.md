@@ -18,13 +18,21 @@ Any string that starts with `(` and has balanced brackets will be considered a v
 
 Any string up to the bracket that matches the one at the start of the anonymous function expression will be considered a valid body.
 
+Extra whitespace between components of an anonymous function expression is allowed.
+
 Here is an example:
 
 ```C
 (fn int(int x, int y) =>  x + y)
 ```
 
-The parentheses are mandatory (the reason is that it made parsing easier).
+Yes, the parentheses are mandatory (the reason is that it made parsing easier).
+
+Caveats:
+
+The parsing is very rudimentary and not very thought-through so it's probably fragile and will unexpectedly fail on weird input.
+
+There are no error messages in case you make a mistake, because good errors are hard.
 
 ## Build
 
