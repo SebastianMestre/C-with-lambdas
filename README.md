@@ -4,7 +4,7 @@
 
 This program implements a preprocessing step that adds anonymous functions to the C language. To keep things simple -since this was made in about an hour- it does not support nesting of anonymous functions, closures, type checking, or storage in local variables (though this last one does work, if you type the function pointer syntax).
 
-The way it achieves this is by scanning your code for a anonymous functions expressions, the promotes them to file scope with a (hopefully) unique name, by generating some function definitions.
+The way it achieves this is by scanning your code for anonymous function expressions, then promotes them to file scope with a (hopefully) unique name, by generating some function definitions.
 
 ## Usage
 
