@@ -1,6 +1,7 @@
+/* this file was generated from example/pepe.cwl, do not modify or your changes might be lost*/
 #include <stdio.h>
 
-void pioleklkgcfoddcj(int x)
+void  cocjnhliicbdaedj(int x)
 {
 	return (void)printf("%d ", x);
 }
@@ -24,12 +25,12 @@ int main () {
 	int arr[10] = {0,1,2,3,4,5,6,7,8,9};
 	int result[10];
 
-	for_each(arr, arr+10, pioleklkgcfoddcj);
+	for_each(arr, arr+10, cocjnhliicbdaedj);
 	putchar('\n');
 
 	transform(arr, arr+10, result, olbmphilbedhblnk);
 
-	for_each(result, result+10, pioleklkgcfoddcj);
+	for_each(result, result+10, cocjnhliicbdaedj);
 	putchar('\n');
 	
 }

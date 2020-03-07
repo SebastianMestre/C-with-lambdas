@@ -43,23 +43,11 @@ parse_result parse (std::string_view str) {
 	if(str.size() <= 0 || str[0] != '(') return {false, 0, {}};
 	if(str.size() <= 1 || str[1] != 'f') return {false, 0, {}};
 	if(str.size() <= 2 || str[2] != 'n') return {false, 0, {}};
-	if(str.size() <= 3 || str[3] != ' ') return {false, 0, {}};
-	str.remove_prefix(4);
+	str.remove_prefix(3);
 
 	while(str.size() > 0 && str[0] == ' ') str.remove_prefix(1);
 
-	int return_type_length = 0;
-	while(return_type_length < str.size() && str[return_type_length] != '(')
-		return_type_length++;
-
-	if(return_type_length == 0) {
-		std::cerr << "failed to find return value during lamda parsing\n";
-		return {false, 0, {}};
-	}
-
-	std::string return_type = std::string{str.substr(0, return_type_length)};
-
-	str.remove_prefix(return_type_length);
+	if(str.size() <= 0 || str[0] != '(') return {false, 0, {}};
 
 	std::string arglist;
 	{
@@ -78,6 +66,21 @@ parse_result parse (std::string_view str) {
 	}
 
 	while(str.size() > 0 && str[0] == ' ') str.remove_prefix(1);
+
+	if(str.size() <= 0 || str[0] != ':') return {false, 0, {}};
+	str.remove_prefix(1);
+
+	while(str.size() > 0 && str[0] == ' ') str.remove_prefix(1);
+
+	int return_type_length = 0;
+	while(return_type_length < str.size() && str[return_type_length] != '=')
+		return_type_length++;
+	if(return_type_length == 0) {
+		std::cerr << "failed to find return value during lamda parsing\n";
+		return {false, 0, {}};
+	}
+	std::string return_type = std::string{str.substr(0, return_type_length)};
+	str.remove_prefix(return_type_length);
 
 	if(str.size() <= 0 || str[0] != '=') return {false, 0, {}};
 	if(str.size() <= 1 || str[1] != '>') return {false, 0, {}};
@@ -125,6 +128,8 @@ int main (int argc, char** argv) {
 	std::unordered_map<std::string, lambda_data> lambdas;
 
 	std::stringstream replaced;
+
+	replaced << "/* this file was generated from " << argv[1] << ", do not modify or your changes might be lost*/\n";
 
 	while (not content_view.empty()) {
 		auto pr = parse(content_view);

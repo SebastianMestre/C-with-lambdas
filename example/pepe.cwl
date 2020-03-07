@@ -16,12 +16,12 @@ int main () {
 	int arr[10] = {0,1,2,3,4,5,6,7,8,9};
 	int result[10];
 
-	for_each(arr, arr+10, (fn void(int x) => (void)printf("%d ", x)));
+	for_each(arr, arr+10, (fn (int x):void => (void)printf("%d ", x)));
 	putchar('\n');
 
-	transform(arr, arr+10, result, (fn int(int x) => x*2));
+	transform(arr, arr+10, result, (fn(int x) : int=> x*2));
 
-	for_each(result, result+10, (fn void(int x) => (void)printf("%d ", x)));
+	for_each(result, result+10, (fn(int x) :void => (void)printf("%d ", x)));
 	putchar('\n');
 	
 }

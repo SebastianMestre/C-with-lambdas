@@ -16,10 +16,10 @@ You must provide a single point in your file where the generated definitions wil
 
 ### Syntax
 
-An anonymous function looks as follows:
+Anonymous function syntax is pretty much the same as PHP, with extra parentheses that wrap the whole thing. Anonymous functions are of the form:
 
 ```
-(fn <return-type> <argument-list> => <body>)
+(fn (<argument-list>) : <return-type> => <body>)
 ```
 
 CWL will recognize any string that does not contain the `(` character as a valid return type.
@@ -33,12 +33,12 @@ Extra whitespace between components of an anonymous function expression is allow
 Here is an example:
 
 ```C
-(fn int(int x, int y) =>  x + y)
+(fn (int x, int y) : int =>  x + y)
 ```
 
-Yes, the parentheses are mandatory (the reason is that it made parsing easier).
+Parentheses are mandatory because it makes parsing easier.
 
-Caveats:
+#### Caveats:
 
 The parsing is very rudimentary and not very thought-through so it's probably fragile and will unexpectedly fail on weird input.
 
